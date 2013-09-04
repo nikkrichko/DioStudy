@@ -25,12 +25,14 @@ public class MyPojo {
         return Salary;
     }
 
+
+
     @Override
     public String toString() {
         return "MyPojo{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", Salary=" + Salary +
+                "name='" + getName() + '\'' +
+                ", age=" + getAge() +
+                ", Salary=" + getSalary() +
                 '}';
     }
 
@@ -41,11 +43,13 @@ public class MyPojo {
         // Дополнительные параметры - инициализируются значениями по умолчанию
         private int salary = 0;
 
+        public Builder populate(MyPojo myPojo){
+            this.name = myPojo.getName();
+            this.age = myPojo.getAge();
+            this.salary = myPojo.getSalary();
+            return this;
+        }
 
-//        public Builder(int servingSize, int servings) {
-//            this.servingSize = servingSize;
-//            this.servings = servings;
-//        }
 
         public Builder setName (String  name){
             this.name = name;
@@ -60,6 +64,18 @@ public class MyPojo {
         public Builder setSalary(int salary) {
             this.salary = salary;
             return this;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getAge() {
+            return age;
+        }
+
+        public int getSalary() {
+            return salary;
         }
 
         public MyPojo build() {
