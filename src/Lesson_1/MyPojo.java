@@ -51,17 +51,17 @@ public class MyPojo {
         }
 
 
-        public Builder setName (String  name){
+        public Builder Name(String name){
             this.name = name;
             return this;
         }
 
-        public Builder setAge (int age){
+        public Builder Age(int age){
              this.age = age;
             return this;
         }
 
-        public Builder setSalary(int salary) {
+        public Builder Salary(int salary) {
             this.salary = salary;
             return this;
         }
