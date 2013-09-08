@@ -20,7 +20,7 @@ public class ArrayHelperTest {
         for (int i = 0; i < arraySize; i++){
             assertTrue(inputValue[i] > 0 && inputValue[i] <= maxValueRandom);
         }
-        System.out.println(Arrays.toString(inputValue));
+//        System.out.println(Arrays.toString(inputValue));
 
     }
 
@@ -30,7 +30,7 @@ public class ArrayHelperTest {
         for(int i = 0; i < 100000; i++){
             int actualResult = ArrayHelper.generateRandomInt(inputValue);
             assertTrue(actualResult > 0 && actualResult <= inputValue);
-            System.out.print(actualResult + ", ");
+//            System.out.print(actualResult + ", ");
         }
 
     }
@@ -49,9 +49,9 @@ public class ArrayHelperTest {
     @Test
     public void testCountDublicat() throws Exception{
         int[] m1 = {1, 3, 5, 6, 7};
-        int[] m2 = {3, 4, 5, 9, 3};
+        int[] m2 = {3, 4, 5, 9};
         int actualResult = ArrayHelper.countDublicate(m1, m2);
-        assertEquals(3, actualResult);
+        assertEquals(2, actualResult);
 
     }
 
@@ -64,5 +64,40 @@ public class ArrayHelperTest {
         System.out.println(Arrays.toString(m3));
         assertTrue(Arrays.equals(m3, expectedResult));
     }
+
+    @Test
+    public void testInnerJoin() throws Exception{
+
+        int[] m1 = {1, 3, 5, 6, 7};
+        int[] m2 = {3, 4, 5, 9, 3};
+        int[] m3 = ArrayHelper.innerJoin(m1, m2);
+        int[] expectedResult = {3,5};
+        System.out.println(Arrays.toString(ArrayHelper.innerJoin(m1,m2)));
+        assertTrue(Arrays.equals(m3, expectedResult));
+    }
+
+    @Test
+    public  void testLeftJoin() throws Exception{
+
+        int[] m1 = {1, 3, 5, 6, 7};
+        int[] m2 = {3, 4, 5, 6, 3};
+        int[] m3 = ArrayHelper.leftJoin(m1, m2);
+        int[] expectedResult = {1, 3, 5, 6, 7, 3, 5, 6, 3};
+        System.out.println(Arrays.toString(ArrayHelper.leftJoin(m1,m2)));
+        assertTrue(Arrays.equals(m3, expectedResult));
+    }
+
+    @Test
+    public void testOuterJoin() throws Exception{
+
+        int[] m1 = {1, 3, 5, 6, 7};
+        int[] m2 = {3, 4, 5, 9, 3};
+        int[] m3 = ArrayHelper.outerJoin(m1, m2);
+        int[] expectedResult = {1, 6, 7, 4, 9};
+        System.out.println(Arrays.toString(ArrayHelper.outerJoin(m1,m2)));
+        assertTrue(Arrays.equals(m3, expectedResult));
+    }
+
+
 
 }

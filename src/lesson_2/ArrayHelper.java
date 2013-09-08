@@ -66,4 +66,65 @@ class ArrayHelper {
         return arrayResult;
     }
 
+    public static int[] innerJoin(int[] arrayLeft, int[] arrayRight){
+
+        int[] arrayResult = new int[countDublicate(arrayLeft,arrayRight)];
+        int item = 0;
+        for(int i = 0; i < arrayLeft.length; i++){
+
+            if (ArrayHelper.isValueInArray(arrayRight, arrayLeft[i])){
+
+                {
+                    arrayResult[item++] = arrayLeft[i];
+
+                }
+            }
+        }
+        return arrayResult;
+
+    }
+
+    public static int[] leftJoin(int[] arrayLeft, int[] arrayRight){
+        int i = 0;
+        int[] arrayResult = new int[arrayLeft.length + countDublicate(arrayRight, arrayLeft)];
+        for (i = 0; i < arrayLeft.length; i++){
+            arrayResult[i] = arrayLeft[i];
+        }
+        for (int j = 0; j < arrayRight.length; j++) {
+            if(ArrayHelper.isValueInArray(arrayLeft, arrayRight[j])){
+                arrayResult[i++] = arrayRight[j];
+            }
+
+        }
+        return arrayResult;
+    }
+
+    public static int[] outerJoin(int[] arrayLeft, int[] arrayRight){
+        int razmer = 0;
+        int item = 0;
+
+        for (int i = 0; i < arrayLeft.length; i++ ){
+            if (!isValueInArray(arrayRight, arrayLeft[i]))
+                razmer++;
+        }
+
+        for (int i = 0; i < arrayRight.length; i++ ){
+            if (!isValueInArray(arrayLeft, arrayRight[i]))
+                razmer++;
+        }
+        int[] arrayResult = new int[razmer];
+
+        for (int i = 0; i < arrayLeft.length; i++ ){
+            if (!isValueInArray(arrayRight, arrayLeft[i]))
+                arrayResult[item++] = arrayLeft[i];
+        }
+
+        for (int i = 0; i < arrayRight.length; i++ ){
+            if (!isValueInArray(arrayLeft, arrayRight[i])){
+                arrayResult[item++] = arrayRight[i];
+            }
+        }
+        return arrayResult;
+    }
+
 }
