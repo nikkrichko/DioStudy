@@ -34,6 +34,56 @@ class ArrayHelper {
         return n;
     }
 
+    static boolean ifDublicatePrevious(int[] array, int j){
+        for (int i = 0; i < j; i++){
+            if (array[i] == array[j])
+                return true;
+        }
+        return false;
+    }
+
+
+
+    public static int[] merge1(int[] arrayleft, int[] arrayRight){
+        int razmer = 0;
+        int item = 0;
+        for(int i = 0; i < arrayleft.length; i++ ){
+           if (!ifDublicatePrevious(arrayleft, i))
+               razmer++;
+        }
+
+        for(int i = 0; i < arrayRight.length; i++ ){
+            if (!isValueInArray(arrayleft, arrayRight[i]) && !ifDublicatePrevious(arrayRight, i))
+                razmer++;
+        }
+
+        int[] arrayResult = new int[razmer];
+
+        for (int i = 0; i < arrayleft.length; i++){
+            arrayResult[item] = arrayleft[i];
+            if(!ifDublicatePrevious(arrayResult, item)) {
+                item++;
+                if (item == arrayResult.length)
+                    break;
+            }
+        }
+
+        if (item != arrayResult.length)
+        for (int i = 0; i < arrayRight.length; i++){
+            arrayResult[item] = arrayRight[i];
+            if(!ifDublicatePrevious(arrayResult, item)) {
+                item++;
+                if (item == arrayResult.length)
+                    break;
+            }
+        }
+
+        return arrayResult;
+
+
+
+    }
+
     // Простое обьединение
     public static int[] merge (int[] arrayLeft, int[] arrayRight){
         int count = 0;

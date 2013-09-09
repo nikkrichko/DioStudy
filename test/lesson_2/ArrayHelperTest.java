@@ -65,6 +65,17 @@ public class ArrayHelperTest {
         assertTrue(Arrays.equals(m3, expectedResult));
     }
 
+
+    @Test
+    public void testMerge1() throws Exception{
+        int[] m1 = {1, 3, 5, 6, 7};
+        int[] m2 = {3, 4, 5, 9, 3};
+        int[] m3 = ArrayHelper.merge1(m1, m2);
+        int[] expectedResult = {1, 3, 5, 6, 7, 4, 9};
+        System.out.println(Arrays.toString(m3));
+        assertTrue(Arrays.equals(m3, expectedResult));
+    }
+
     @Test
     public void testInnerJoin() throws Exception{
 
@@ -99,5 +110,25 @@ public class ArrayHelperTest {
     }
 
 
+    @Test
+    public void testTime() throws  Exception{
+        int arraySize = 10000000;
+
+        int[] array1 = new int[arraySize];
+        int[] array2 = new int[arraySize];
+
+        ArrayHelper.populateArrayRandom(array1, 100);
+        ArrayHelper.populateArrayRandom(array2, 100);
+
+//        System.out.println(Arrays.toString(array1));
+//        System.out.println(Arrays.toString(array2));
+        System.out.println("++++");
+        System.out.println("Result:");
+        System.out.println("++++");
+
+
+        ArrayHelper.merge1(array1, array2);
+//        System.out.println(" merge" + Arrays.toString(ArrayHelper.merge(array1, array2)));
+    }
 
 }
