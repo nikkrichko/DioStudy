@@ -1,0 +1,8 @@
+stud id: 1009 Score: 99
+stud id: 1004 Score: 89
+stud id: 1002 Score: 80
+stud id: 1007 Score: 68
+stud id: 1003 Score: 60
+stud id: 1005 Score: 55
+stud id: 1001 Score: 40
+stud id: 1009 Score: 10
