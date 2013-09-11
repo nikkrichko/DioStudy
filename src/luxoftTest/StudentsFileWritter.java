@@ -18,7 +18,7 @@ public class StudentsFileWritter {
         try {
             FileWriter writer = new FileWriter("StudentsOutput.txt");
             for (int i = 0; i < students.size(); i++){
-            writer.write("stud id: " + students.get(i).getId() + " Score: " + students.get(i).getScore());
+            writer.write("stud id: " + students.get(i).getId() + " Score: " + students.get(i).getScore() + "\n");
 
 
             }
