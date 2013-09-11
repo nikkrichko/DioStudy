@@ -29,7 +29,8 @@ public class Main {
         StudentsFileWritter.writeStudent(students);
 
 
-
+        String[] words = {"Hello", "world", "today", "is", "good"};
+        System.out.println(Reverse.reverseStrings(words));
 
 
 

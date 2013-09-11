@@ -9,7 +9,6 @@ package luxoftTest;
  */
 public class Reverse {
 
-    String[] words = {"Hello", "world", "today", "is", "good"};
 
     private static String reverseWord(String word){
         StringBuilder wordResult = new StringBuilder();

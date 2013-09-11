@@ -11,8 +11,10 @@ import java.util.Arrays;
  */
 public class Main {
     public static void main(String[] args) {
-        int[] array1 = new int[10000];
-        int[] array2 = new int[10000];
+        int[] array1 = new int[10];
+        int[] array2 = new int[10];
+
+
 
         ArrayHelper.populateArrayRandom(array1, 25);
         ArrayHelper.populateArrayRandom(array2, 20);
@@ -25,10 +27,10 @@ public class Main {
 
 
 
-        System.out.println(" merge" + Arrays.toString(ArrayHelper.merge(array1, array2)));
-//        System.out.println(" innerJoin" + Arrays.toString(ArrayHelper.innerJoin(array1, array2)));
-//        System.out.println(" leftJoin" + Arrays.toString(ArrayHelper.leftJoin(array1, array2)));
-//        System.out.println(" outerJoin" + Arrays.toString(ArrayHelper.outerJoin(array1, array2)));
+        System.out.println(" mergeWithSort" + Arrays.toString(ArrayHelper.mergeWithSort(array1, array2)));
+        System.out.println(" innerJoin" + Arrays.toString(ArrayHelper.innerJoin(array1, array2)));
+        System.out.println(" leftJoin" + Arrays.toString(ArrayHelper.leftJoin(array1, array2)));
+        System.out.println(" outerJoin" + Arrays.toString(ArrayHelper.outerJoin(array1, array2)));
 
     }
 }

@@ -44,10 +44,15 @@ class ArrayHelper {
 
 
 
-    public static int[] merge1(int[] arrayleft, int[] arrayRight){
+
+    // Простое обьединение без сортировки - дубликаты
+    public static int[] mergeWithoutSort(int[] arrayleft, int[] arrayRight){
+
+
         int razmer = 0;
         int item = 0;
-        for(int i = 0; i < arrayleft.length; i++ ){
+        try {
+            for(int i = 0; i < arrayleft.length; i++ ){
            if (!ifDublicatePrevious(arrayleft, i))
                razmer++;
         }
@@ -55,6 +60,9 @@ class ArrayHelper {
         for(int i = 0; i < arrayRight.length; i++ ){
             if (!isValueInArray(arrayleft, arrayRight[i]) && !ifDublicatePrevious(arrayRight, i))
                 razmer++;
+        }
+        } catch (NullPointerException e) {
+            System.out.println("Array is null");
         }
 
         int[] arrayResult = new int[razmer];
@@ -78,29 +86,29 @@ class ArrayHelper {
             }
         }
 
+
+
+
         return arrayResult;
-
-
-
     }
 
-    // Простое обьединение
-    public static int[] merge (int[] arrayLeft, int[] arrayRight){
+    // Простое обьединение с сортировкой  - дубликаты
+    public static int[] mergeWithSort(int[] arrayLeft, int[] arrayRight){
         int count = 0;
 
         boolean[] array3 = new boolean[5000];
 
-        for(int i = 0; i < arrayLeft.length; i++){
-            array3[arrayLeft[i]] = true;
-        }
+            for(int i = 0; i < arrayLeft.length; i++){
+                array3[arrayLeft[i]] = true;
+            }
 
-        for(int i = 0; i < arrayRight.length; i++){
-            array3[arrayRight[i]] = true;
-        }
+            for(int i = 0; i < arrayRight.length; i++){
+                array3[arrayRight[i]] = true;
+            }
 
-        for (int i = 0; i < 5000; i++){
-            if (array3[i] == true) count++;
-        }
+            for (int i = 0; i < 5000; i++){
+                if (array3[i] == true) count++;
+            }
 
         int[] arrayResult = new int[count];
 
@@ -116,6 +124,9 @@ class ArrayHelper {
         return arrayResult;
     }
 
+
+
+    // только дубликаты
     public static int[] innerJoin(int[] arrayLeft, int[] arrayRight){
 
         int[] arrayResult = new int[countDublicate(arrayLeft,arrayRight)];
@@ -133,7 +144,7 @@ class ArrayHelper {
         return arrayResult;
 
     }
-
+    // первый + дубликаты
     public static int[] leftJoin(int[] arrayLeft, int[] arrayRight){
         int i = 0;
         int[] arrayResult = new int[arrayLeft.length + countDublicate(arrayRight, arrayLeft)];
@@ -148,7 +159,7 @@ class ArrayHelper {
         }
         return arrayResult;
     }
-
+    // только оригиналы
     public static int[] outerJoin(int[] arrayLeft, int[] arrayRight){
         int razmer = 0;
         int item = 0;
