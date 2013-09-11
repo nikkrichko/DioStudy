@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-<<<<<<< HEAD
+
         StudentsFileReader studentsFileReader = new StudentsFileReader("StRate.txt");
         List<Student> students = studentsFileReader.readStudents();
 
@@ -30,11 +30,10 @@ public class Main {
 
 
 
-=======
-        StudentsFileReader studentsFileReader = new StudentsFileReader("sdfsd");
-        List<Student> students = studentsFileReader.readStudents();
 
->>>>>>> a4864d5812cf6981571fab670ad116ccd1daf21b
+
+
+
     }
 
 }
