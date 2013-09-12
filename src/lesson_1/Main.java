@@ -1,4 +1,4 @@
-package UROK_1;
+package lesson_1;
 
 /**
  * Created with IntelliJ IDEA.
