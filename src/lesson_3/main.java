@@ -1,37 +1,50 @@
 package lesson_3;
 
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import lesson_3.Comparator.AgeComaprator;
+import lesson_3.Comparator.SalaryComparator;
+
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        MyPojo Human_01 = new MyPojoImpl.Builder().name("Bender").age(20).salary(1000).build();
-        MyPojo Human_02 = new MyPojoImpl.Builder().name("Ivanov").age(22).salary(3000).build();
-        MyPojo Human_03 = new MyPojoImpl.Builder().name("DeNiro").age(25).salary(2000).build();
-        MyPojo Human_04 = new MyPojoImpl.Builder().name("Sidorov").age(28).salary(2000).build();
-        MyPojo Human_05 = new MyPojoImpl.Builder().name("Simpson").age(24).salary(4000).build();
-        MyPojo Human_06 = new MyPojoImpl.Builder().name("Pachino").age(35).salary(8000).build();
-        MyPojo Human_07 = new MyPojoImpl.Builder().name("DeNiro").age(48).salary(9000).build();
-        MyPojo Human_08 = new MyPojoImpl.Builder().name("Stethem").age(50).salary(8000).build();
-        MyPojo Human_09 = new MyPojoImpl.Builder().name("Freman").age(31).salary(4000).build();
-        MyPojo Human_10 = new MyPojoImpl.Builder().name("Bender").age(20).salary(1000).build();
+
+        Size size1 = new Size();
+        size1.high = 12;
+        size1.weight = 14;
+        Size size2 = new Size();
+        size2.high = -12;
+        size2.weight = 16;
+        Size size3 = new Size();
+        size3.high = 122;
+        size3.weight = 145;
+
+        Comparator<MyPojo> ageComparator = new AgeComaprator();
+        MyPojo human_01 = new MyPojoImpl.Builder().size(size1).name("Bender").age(20).salary(1000).comparator(ageComparator).build();
+        MyPojo human_02 = new MyPojoImpl.Builder().size(size2).name("DeNiro").age(25).salary(3000).comparator(ageComparator).build();
+        MyPojo human_03 = new MyPojoImpl.Builder().size(size3).name("DeNiro").age(25).salary(2000).comparator(ageComparator).build();
+//        MyPojo Human_04 = new MyPojoImpl.Builder().name("Sidorov").age(28).salary(2000).comparator(ageComparator).build();
+//        MyPojo Human_05 = new MyPojoImpl.Builder().name("Simpson").age(24).salary(4000).comparator(ageComparator).build();
+//        MyPojo Human_06 = new MyPojoImpl.Builder().name("Pachino").age(35).salary(8000).comparator(ageComparator).build();
+//        MyPojo Human_07 = new MyPojoImpl.Builder().name("DeNiro").age(48).salary(9000).comparator(ageComparator).build();
+//        MyPojo Human_08 = new MyPojoImpl.Builder().name("Stethem").age(50).salary(8000).comparator(ageComparator).build();
+//        MyPojo Human_09 = new MyPojoImpl.Builder().name("Freman").age(31).salary(4000).comparator(ageComparator).build();
+//        MyPojo Human_10 = new MyPojoImpl.Builder().name("Bender").age(20).salary(1000).comparator(ageComparator).build();
 
 
-        ArrayList<MyPojo> HumansLeft = new ArrayList<MyPojo>();
-        ArrayList<MyPojo> HumansRight = new ArrayList<MyPojo>();
-        HumansLeft.add(Human_01);
-        HumansLeft.add(Human_02);
-        HumansLeft.add(Human_03);
-        HumansLeft.add(Human_04);
-        HumansLeft.add(Human_05);
-
-        HumansRight.add(Human_06);
-        HumansRight.add(Human_07);
-        HumansRight.add(Human_08);
-        HumansRight.add(Human_09);
-        HumansRight.add(Human_10);
+        List<MyPojo> HumansLeft = new ArrayList<>();
+        List<MyPojo> HumansRight = new ArrayList<>();
+        HumansLeft.add(human_01);
+        HumansLeft.add(human_02);
+        HumansLeft.add(human_03);
+//        HumansLeft.add(Human_04);
+//        HumansLeft.add(Human_05);
+//
+//        HumansRight.add(Human_06);
+//        HumansRight.add(Human_07);
+//        HumansRight.add(Human_08);
+//        HumansRight.add(Human_09);
+//        HumansRight.add(Human_10);
 
 
         for ( int i = 0; i < HumansLeft.size(); i++){
@@ -42,16 +55,48 @@ public class Main {
         for ( int i = 0; i < HumansRight.size(); i++){
             System.out.println(HumansRight.get(i).toString());}
 
-        ArrayList<MyPojo> ResultHumans = new ArrayList<MyPojo>();
 
-        ResultHumans.addAll(HumansLeft);
-        ResultHumans.addAll(HumansRight);
+        Set<MyPojo> resultHumans = new HashSet<>();
+
+        resultHumans.addAll(HumansLeft);
+        resultHumans.addAll(HumansRight);
 
         System.out.println("***RESULT***");
 
-        for ( int i = 0; i < ResultHumans.size(); i++){
-            System.out.println(ResultHumans.get(i).toString());}
+        for ( MyPojo myPojo : resultHumans) {
+            System.out.println(myPojo);
+        }
 
+        List<MyPojo> resultList = new ArrayList<>();
+        resultList.addAll(resultHumans);
+        final String nn = "23214";
+
+        Comparator<MyPojo> salaryComparator = new Comparator<MyPojo>(){
+
+            @Override
+            public int compare(MyPojo o1, MyPojo o2) {
+
+                if (!o1.getName().equals(o2.getName()))
+                    return o1.getName().compareTo(o2.getName());
+
+                if (o1.getAge() != o2.getAge())
+                    return o1.getAge() - o2.getAge();
+
+                if (o1.getSalary() != o2.getSalary())
+                    return o1.getSalary() - o2.getSalary();
+
+                return 0;
+            }
+
+        };
+
+        Collections.sort(resultList, salaryComparator);
+
+        System.out.println("***SORTED RESULT***");
+
+        for ( MyPojo myPojo : resultList) {
+            System.out.println(myPojo);
+        }
 
     }
 }
