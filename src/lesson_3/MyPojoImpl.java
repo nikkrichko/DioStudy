@@ -38,6 +38,7 @@ public class MyPojoImpl implements MyPojo {
         return salary;
     }
 
+
     @Override
     public Comparator<MyPojo> getComparator() {
         return comparator;
