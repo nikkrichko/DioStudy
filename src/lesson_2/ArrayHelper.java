@@ -15,8 +15,13 @@ class ArrayHelper {
     }
 
     public static int generateRandomInt(int maxValue) {
-
         return (int)((Math.random()*(maxValue-1))+1);
+    }
+
+    public static int generateRandomAge(int minValue, int maxValue) {
+
+        int nn = maxValue - minValue;
+        return (int)((Math.random()*(nn))+minValue);
     }
 
     public static boolean isValueInArray (int[] array, int j){
