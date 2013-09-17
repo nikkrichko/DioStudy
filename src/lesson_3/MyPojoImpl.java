@@ -9,10 +9,10 @@ public class MyPojoImpl implements MyPojo {
     private final int age;
     private final int salary;
     private final Comparator<MyPojo> comparator;
-    private final Size size;
+
 
     private MyPojoImpl(Builder builder) {
-        size = builder.getSize();
+
         name = builder.getName();
         age = builder.getAge();
         salary = builder.getSalary();
@@ -43,10 +43,7 @@ public class MyPojoImpl implements MyPojo {
         return comparator;
     }
 
-    @Override
-    public Size getSize() {
-        return size;
-    }
+
 
     @Override
     public String toString() {
@@ -100,14 +97,13 @@ public class MyPojoImpl implements MyPojo {
         private int age = 0;
         private Comparator<MyPojo> comparator = new NameComparator();
         private int salary = 0;
-        private Size size;
+
 
         public Builder populate(MyPojo myPojo){
             this.name = myPojo.getName();
             this.age = myPojo.getAge();
             this.salary = myPojo.getSalary();
             this.comparator = myPojo.getComparator();
-            this.size = myPojo.getSize();
             return this;
         }
 
@@ -127,10 +123,7 @@ public class MyPojoImpl implements MyPojo {
             return this;
         }
 
-        public Builder size(Size size) {
-            this.size = size;
-            return this;
-        }
+
 
 
         public Builder comparator(Comparator<MyPojo> comparator){
@@ -154,9 +147,7 @@ public class MyPojoImpl implements MyPojo {
             return comparator;
         }
 
-        public Size getSize() {
-            return size;
-        }
+
 
         public MyPojo build() {
             return new MyPojoImpl(this);

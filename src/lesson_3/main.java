@@ -9,27 +9,18 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
-        Size size1 = new Size();
-        size1.high = 12;
-        size1.weight = 14;
-        Size size2 = new Size();
-        size2.high = -12;
-        size2.weight = 16;
-        Size size3 = new Size();
-        size3.high = 122;
-        size3.weight = 145;
 
-        Comparator<MyPojo> ageComparator = new AgeComaprator();
-        MyPojo human_01 = new MyPojoImpl.Builder().size(size1).name("Bender").age(20).salary(1000).comparator(ageComparator).build();
-        MyPojo human_02 = new MyPojoImpl.Builder().size(size2).name("DeNiro").age(25).salary(3000).comparator(ageComparator).build();
-        MyPojo human_03 = new MyPojoImpl.Builder().size(size3).name("DeNiro").age(25).salary(2000).comparator(ageComparator).build();
-//        MyPojo Human_04 = new MyPojoImpl.Builder().name("Sidorov").age(28).salary(2000).comparator(ageComparator).build();
-//        MyPojo Human_05 = new MyPojoImpl.Builder().name("Simpson").age(24).salary(4000).comparator(ageComparator).build();
-//        MyPojo Human_06 = new MyPojoImpl.Builder().name("Pachino").age(35).salary(8000).comparator(ageComparator).build();
-//        MyPojo Human_07 = new MyPojoImpl.Builder().name("DeNiro").age(48).salary(9000).comparator(ageComparator).build();
-//        MyPojo Human_08 = new MyPojoImpl.Builder().name("Stethem").age(50).salary(8000).comparator(ageComparator).build();
-//        MyPojo Human_09 = new MyPojoImpl.Builder().name("Freman").age(31).salary(4000).comparator(ageComparator).build();
-//        MyPojo Human_10 = new MyPojoImpl.Builder().name("Bender").age(20).salary(1000).comparator(ageComparator).build();
+        Comparator<MyPojo> ageComparator = new SalaryComparator();
+        MyPojo human_01 = new MyPojoImpl.Builder().name("Bender").age(20).salary(1000).comparator(ageComparator).build();
+        MyPojo human_02 = new MyPojoImpl.Builder().name("DeNiro").age(25).salary(3000).comparator(ageComparator).build();
+        MyPojo human_03 = new MyPojoImpl.Builder().name("DeNiro").age(25).salary(2000).comparator(ageComparator).build();
+        MyPojo Human_04 = new MyPojoImpl.Builder().name("Sidorov").age(28).salary(2000).comparator(ageComparator).build();
+        MyPojo Human_05 = new MyPojoImpl.Builder().name("Simpson").age(24).salary(4000).comparator(ageComparator).build();
+        MyPojo Human_06 = new MyPojoImpl.Builder().name("Pachino").age(35).salary(8000).comparator(ageComparator).build();
+        MyPojo Human_07 = new MyPojoImpl.Builder().name("DeNiro").age(48).salary(9000).comparator(ageComparator).build();
+        MyPojo Human_08 = new MyPojoImpl.Builder().name("Stethem").age(50).salary(8000).comparator(ageComparator).build();
+        MyPojo Human_09 = new MyPojoImpl.Builder().name("Freman").age(31).salary(4000).comparator(ageComparator).build();
+        MyPojo Human_10 = new MyPojoImpl.Builder().name("Bender").age(20).salary(1000).comparator(ageComparator).build();
 
 
         List<MyPojo> HumansLeft = new ArrayList<>();
@@ -37,14 +28,14 @@ public class Main {
         HumansLeft.add(human_01);
         HumansLeft.add(human_02);
         HumansLeft.add(human_03);
-//        HumansLeft.add(Human_04);
-//        HumansLeft.add(Human_05);
-//
-//        HumansRight.add(Human_06);
-//        HumansRight.add(Human_07);
-//        HumansRight.add(Human_08);
-//        HumansRight.add(Human_09);
-//        HumansRight.add(Human_10);
+        HumansLeft.add(Human_04);
+        HumansLeft.add(Human_05);
+
+        HumansRight.add(Human_06);
+        HumansRight.add(Human_07);
+        HumansRight.add(Human_08);
+        HumansRight.add(Human_09);
+        HumansRight.add(Human_10);
 
 
         for ( int i = 0; i < HumansLeft.size(); i++){

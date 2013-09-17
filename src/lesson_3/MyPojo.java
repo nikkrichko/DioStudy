@@ -13,6 +13,5 @@ public interface MyPojo extends Comparable<MyPojo> {
 
     public Comparator<MyPojo> getComparator();
 
-    public Size getSize();
 
 }
