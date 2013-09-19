@@ -52,7 +52,7 @@ public class Main {
         resultHumans.addAll(HumansLeft);
         resultHumans.addAll(HumansRight);
 
-        System.out.println("***RESULT***");
+        System.out.println("***RESULT_without_dublicate***");
 
         for ( MyPojo myPojo : resultHumans) {
             System.out.println(myPojo);
@@ -60,9 +60,9 @@ public class Main {
 
         List<MyPojo> resultList = new ArrayList<>();
         resultList.addAll(resultHumans);
-        final String nn = "23214";
 
-        Comparator<MyPojo> salaryComparator = new Comparator<MyPojo>(){
+
+        Comparator<MyPojo> nameComparator = new Comparator<MyPojo>(){
 
             @Override
             public int compare(MyPojo o1, MyPojo o2) {
@@ -81,7 +81,7 @@ public class Main {
 
         };
 
-        Collections.sort(resultList, salaryComparator);
+        Collections.sort(resultList, nameComparator);
 
         System.out.println("***SORTED RESULT***");
 
