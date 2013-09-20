@@ -11,9 +11,6 @@ import java.util.*;
  */
 public class ServiceHelper {
 
-
-
-
     public List<MyPojoImpl> innerJoin (List<MyPojoImpl> listLeft, List<MyPojoImpl> listRight){
 
         List<MyPojoImpl> resultList = new ArrayList<>();
@@ -37,14 +34,14 @@ public class ServiceHelper {
     public List<MyPojoImpl> removeDublicate (List<MyPojoImpl> list){
         Set<MyPojoImpl> resultSet = new LinkedHashSet<>();
         resultSet.addAll(list);
-        return new ArrayList<>(resultSet);
+        return null;
+//        return new ArrayList<>(resultSet);
 
     }
 
     public void sortList (List<MyPojoImpl> list){
 
         Collections.sort(list);
-
     }
 
 }

@@ -18,7 +18,7 @@ public class Main {
         List<MyPojoImpl> leftList = new ArrayList<MyPojoImpl>(Arrays.asList(human_01, human_02, human_03, human_04, human_02, human_02, human_06));
         List<MyPojoImpl> rightList = new ArrayList<MyPojoImpl>(Arrays.asList(human_06, human_02, human_01, human_04,human_01,human_06,human_05,human_03));
 
-        Service resultList = new Service();
+        Service resultList = new Service(new ServiceHelper());
         System.out.println(resultList.serviceList(leftList, rightList));
 
 
