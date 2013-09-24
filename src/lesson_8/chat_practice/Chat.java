@@ -44,24 +44,24 @@ public class Chat {
     private void listenDir(){
         prepareUser();
         for(;;){
-           createSomeText();
-           WatchKey key = null;
-           try {
-               key = watcher.take();
-           } catch (InterruptedException e) {
-               e.printStackTrace();
-           }
-           if (key != null) {
-               for (WatchEvent<?> event : key.pollEvents()){
-                   WatchEvent<Path> ev = (WatchEvent<Path>)event;
-                   Path filename = ev.context();
-                   deserrializator(filename);
+            createSomeText();
+            WatchKey key = null;
+            try {
+                key = watcher.take();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (key != null) {
+                for (WatchEvent<?> event : key.pollEvents()){
+                    WatchEvent<Path> ev = (WatchEvent<Path>)event;
+                    Path filename = ev.context();
+                    deserrializator(filename);
 
-               }
-               key.reset();
-           }
+                }
+                key.reset();
+            }
 
-       }
+        }
     }
 
     private void deserrializator(Path filename){
