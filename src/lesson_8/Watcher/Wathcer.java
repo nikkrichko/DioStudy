@@ -19,15 +19,6 @@ public class Wathcer {
 
 
 
-//    public static void main(String[] args) throws IOException {
-//
-//        Wathcer deserrializator = new Wathcer();
-//        deserrializator.dessialisatorHelper();
-//        deserrializator.listenDir();
-//
-//
-//
-//    }
 
     public Wathcer() {
         try {
@@ -40,7 +31,7 @@ public class Wathcer {
 
 
         Path dir = Paths.get("");
-        System.out.println("ololo");
+        System.out.println("deserrialisatorHelper STARTED:");
         System.out.println(dir.toAbsolutePath());
         try {
             dir.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
@@ -66,7 +57,7 @@ public class Wathcer {
                     Path filename = ev.context();
 
 
-                    logger.log(event.kind().name() + " " + filename);
+                    logger.log(event.kind().name() + " " + filename, "LogForWatcher");
                 }
                 key.reset();
             }
