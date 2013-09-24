@@ -10,11 +10,18 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Path startingDir = Paths.get("");
         Visitor pf = new Visitor();
-        Files.walkFileTree(startingDir, pf);
-
-        Wathcer deserrializator = new Wathcer();
-        deserrializator.dessialisatorHelper();
-        deserrializator.listenDir();
+        for(;;){
+            Files.walkFileTree(startingDir, pf);
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+//
+//        Wathcer deserrializator = new Wathcer();
+//        deserrializator.dessialisatorHelper();
+//        deserrializator.listenDir();
 
     }
 
