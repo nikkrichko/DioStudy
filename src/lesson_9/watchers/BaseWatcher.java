@@ -1,36 +1,43 @@
-package lesson_8.Watcher;
+package lesson_9.watchers;
 
-import lesson_8.chat_practice.Massage;
 
-import java.io.FileInputStream;
+import lesson_8.Watcher.WatcherLogger;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
 import java.nio.file.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
 
 import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
 import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
 import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
 
-
-public class Wathcer {
+public class BaseWatcher implements Callable<List<Path>> {
     WatcherLogger logger = new WatcherLogger();
     WatchService watcher;
-    public Wathcer() {
+    WatchEvent.Kind<Path> type;
+    List<Path> files = new ArrayList<>();
+
+    public BaseWatcher(WatchEvent.Kind<Path> type) {
+
         try {
             watcher = FileSystems.getDefault().newWatchService();
+            this.type = type;
+            initWatcher();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public void dessialisatorHelper() throws IOException {
+    public void initWatcher() throws IOException {
 
 
         Path dir = Paths.get("");
         System.out.println("deserrialisatorHelper STARTED:");
         System.out.println(dir.toAbsolutePath());
         try {
-            dir.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
+            dir.register(watcher, type);
 
         } catch (IOException x) {
             System.err.println(x);
@@ -39,11 +46,11 @@ public class Wathcer {
 
     public void listenDir(){
 
-        for(;;){
+        {
 
             WatchKey key = null;
             try {
-                key = watcher.take();
+                key = watcher.poll(1000, TimeUnit.MILLISECONDS);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -53,7 +60,8 @@ public class Wathcer {
                     Path filename = ev.context();
 
 
-                    logger.log(event.kind().name() + " " + filename, "LogForWatcher");
+                    logger.log(event.kind().name() + " " + filename, "LogFor" + type);
+                    files.add(filename);
                 }
                 key.reset();
             }
@@ -61,5 +69,9 @@ public class Wathcer {
         }
     }
 
-
+    @Override
+    public List<Path> call() throws Exception {
+        listenDir();
+        return files;
+    }
 }

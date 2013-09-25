@@ -20,7 +20,7 @@ public class Main {
         }
 //
 //        Wathcer deserrializator = new Wathcer();
-//        deserrializator.dessialisatorHelper();
+//        deserrializator.initWatcher();
 //        deserrializator.listenDir();
 
     }

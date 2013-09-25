@@ -11,12 +11,16 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.DosFileAttributes;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class Visitor extends SimpleFileVisitor<Path> {
     private WatcherLogger logger = new WatcherLogger();
     private String attributes;
     private Map<Path, FileAttribute> mapOfFiles = new HashMap<>();
+    AtomicInteger age;
+    AtomicBoolean booleanAtomic;
 
     public void fileAttr(Path file){
     FileAttribute fileAttr = new FileAttribute(file.toFile().canExecute(), file.toFile().canWrite(), file.toFile().canRead());
