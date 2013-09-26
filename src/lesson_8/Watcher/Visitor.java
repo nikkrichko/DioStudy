@@ -19,8 +19,6 @@ public class Visitor extends SimpleFileVisitor<Path> {
     private WatcherLogger logger = new WatcherLogger();
     private String attributes;
     private Map<Path, FileAttribute> mapOfFiles = new HashMap<>();
-    AtomicInteger age;
-    AtomicBoolean booleanAtomic;
 
     public void fileAttr(Path file){
     FileAttribute fileAttr = new FileAttribute(file.toFile().canExecute(), file.toFile().canWrite(), file.toFile().canRead());
@@ -28,16 +26,19 @@ public class Visitor extends SimpleFileVisitor<Path> {
             FileAttribute oldAttr = mapOfFiles.get(file);
             String logTxt = "change some atrributes";
             if (oldAttr.isExecuted() != fileAttr.isExecuted()) {
-                logTxt += " excute attr changed ";
+                logTxt += " EXECUTE attr changed ";
+            }
+            if (oldAttr.isRead() != fileAttr.isRead()) {
+                logTxt += " READ attr changed ";
+            }
+            if (oldAttr.isWrite() != fileAttr.isWrite()) {
+                logTxt += " WRITE attr changed ";
             }
             logger.log(file + logTxt, "ChAtrrLogger");
         }
         mapOfFiles.put(file, fileAttr);
 
-//        attributes = file.toFile().getName() + ": Executed: " + file.toFile().canExecute() +
-//                " Read: " + file.toFile().canRead() +
-//                " Write: " + file.toFile().canWrite();
-//    return attributes;
+
 }
 
 
@@ -46,9 +47,7 @@ public class Visitor extends SimpleFileVisitor<Path> {
                                      BasicFileAttributes attr) {
         if (file.toString().endsWith(".file")){
             fileAttr(file);
-//            logger.log(fileAttr(file), "FilleAtribute");
-//            System.out.println(fileAttr(file));
-//            System.out.println(file);
+
         }
         return CONTINUE;
     }
