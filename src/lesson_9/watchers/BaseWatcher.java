@@ -71,6 +71,7 @@ public class BaseWatcher implements Callable<List<Path>> {
 
     @Override
     public List<Path> call() throws Exception {
+        files = new ArrayList<Path>();
         listenDir();
         return files;
     }
