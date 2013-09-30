@@ -32,14 +32,17 @@ public class Watcher {
             }
             for (Future<List<Path>> future : futures) {
                 try {
-                    resultedSet.addAll(future.get());
-                    if (!resultedSet.isEmpty())
-                        logger.log(resultedSet.toString(), "ResultOfThread");
-                    resultedSet.clear();
+                    if(future.isDone())
+                        resultedSet.addAll(future.get(1000, TimeUnit.MILLISECONDS));
+                            if (!resultedSet.isEmpty())
+                                logger.log(resultedSet.toString(), "ResultOfThread");
+                                resultedSet.clear();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
                     e.printStackTrace();
+                } catch (TimeoutException e) {
+                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                 }
             }
         }
